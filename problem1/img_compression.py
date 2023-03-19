@@ -2,7 +2,7 @@ import argparse
 import warnings
 import cv2
 import numpy
-from scipy import fftpack
+from scipy import fft
 from astropy.io import fits
 from matplotlib import pyplot as plt
 
@@ -23,7 +23,7 @@ if args.fits:
     img = img1
 else:
     img = cv2.imread(args.input)
-fourier_img = [fftpack.fft2(img[:, :, i]) for i in range(img.shape[2])]
+fourier_img = [fft.fft2(img[:, :, i]) for i in range(img.shape[2])]
 qualities = []
 sigmas = []
 for p in range(start, end, step):
@@ -33,7 +33,7 @@ for p in range(start, end, step):
         f_img = fourier_img[i]
         q = numpy.percentile(numpy.abs(f_img), 100 - p)
         c_img = numpy.where(numpy.abs(f_img) > q, f_img, 0)
-        compressed_img.append(numpy.abs(fftpack.ifft2(c_img)))
+        compressed_img.append(numpy.abs(fft.ifft2(c_img)))
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
             ql.append(numpy.sum(numpy.where(img[:, :, i] > 0, (img[:, :, i] - compressed_img[i]) ** 2 / img[:, :, i], 0)))
