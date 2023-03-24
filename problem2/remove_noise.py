@@ -10,7 +10,6 @@ fits_file = fits.open(args.input)
 img = fits_file[0].data
 ft_img = fft.fft2(img)
 fts_img = fft.fftshift(ft_img)
-center = (img.shape[0] / 2, img.shape[1] / 2)
 
 # I don't know what to do
 
