@@ -6,9 +6,9 @@ from scipy import fft
 from astropy.io import fits
 from matplotlib import pyplot as plt
 
-start = 5
-step = 5
-end = 100 + step
+start = 1
+step = 1
+end = 5 + step
 
 parser = argparse.ArgumentParser()
 parser.add_argument("input", action="store", help="input file name")
