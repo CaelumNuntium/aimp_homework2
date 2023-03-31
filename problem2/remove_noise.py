@@ -2,7 +2,6 @@ import argparse
 import numpy
 from scipy import fft
 from astropy.io import fits
-from matplotlib import pyplot as plt
 
 parser = argparse.ArgumentParser()
 parser.add_argument("input", action="store", help="input file name")
